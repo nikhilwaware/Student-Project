@@ -1,0 +1,39 @@
+package com;
+
+import java.io.IOException;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+public class Serv1 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+    public Serv1() {
+        // TODO Auto-generated constructor stub
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		try {
+			ServletConfig config=getServletConfig();
+			
+			String mydriver = config.getInitParameter("driver");
+			String myurl = config.getInitParameter("url");
+			String uname = config.getInitParameter("uname");
+			String pass = config.getInitParameter("password");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+}

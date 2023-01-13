@@ -1,0 +1,58 @@
+package com;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.mysql.cj.xdevapi.PreparableStatement;
+
+
+public class Serv1 extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+    public Serv1() {
+        // TODO Auto-generated constructor stub
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		try {
+			ServletConfig config=getServletConfig();
+			
+			String mydriver = config.getInitParameter("driver");
+			String myurl = config.getInitParameter("url");
+			String uname = config.getInitParameter("uname");
+			String pass = config.getInitParameter("password");
+			
+			System.out.println(mydriver);
+			System.out.println(myurl);
+			System.out.println(uname);
+			System.out.println(pass);
+			
+			Class.forName("mydriver");
+			Connection con = DriverManager.getConnection("myurl");
+			PreparedStatement stmt = con.prepareStatement("insert into mathfunction values(?,?,?,?)");
+			
+			stmt.setString(1, "123");
+			stmt.setString(2, "456");
+			stmt.setString(3, "789");
+			stmt.setString(4, "258");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+}
